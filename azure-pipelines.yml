@@ -1,8 +1,10 @@
+# ASP.NET Core (.NET Framework)
+
 trigger:
-- main
+- master
 
 pool:
-  name: Azure Pipelines
+  vmImage: 'windows-latest'
 
 stages:
 
@@ -15,6 +17,7 @@ stages:
           displayName: Restore
           inputs:
             command: 'restore'
+#            projects: '$(Parameters.RestoreBuildProjects)'
             projects: '**/*.csproj'
 
   - stage: 'Build'
@@ -28,6 +31,7 @@ stages:
             projects: '**/*.csproj'
             arguments: '--configuration $(BuildConfiguration)'
 
+
   - stage: 'Test'
     displayName: 'Test'
     jobs:
@@ -37,7 +41,7 @@ stages:
           displayName: Test
           inputs:
             command: 'test'
-            projects: '$(Parameters.TestProjects)'
+            projects: '**/*[Tt]ests/*.csproj'
             arguments: '--configuration $(BuildConfiguration)'
 
   - stage: 'Publish'
