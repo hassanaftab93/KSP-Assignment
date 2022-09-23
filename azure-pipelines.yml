@@ -25,7 +25,7 @@ stages:
         - task: DotNetCoreCLI@2
           displayName: Build
           inputs:
-            projects: '$(Parameters.RestoreBuildProjects)'
+            projects: '**/*.csproj'
             arguments: '--configuration $(BuildConfiguration)'
 
   - stage: 'Test'
