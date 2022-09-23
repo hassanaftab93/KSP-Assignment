@@ -1,5 +1,5 @@
 trigger:
-  - none
+- 
 
 pool:
   name: Azure Pipelines
@@ -7,7 +7,7 @@ pool:
 stages:
 
   - stage: 'Restore'
-    displayname: 'Restore'
+    displayName: 'Restore'
     jobs:
       - job: restore
         steps:
@@ -18,7 +18,7 @@ stages:
             projects: '$(Parameters.RestoreBuildProjects)'
 
   - stage: 'Build'
-    displayname: 'Build'
+    displayName: 'Build'
     jobs:
       - job: build
         steps:
@@ -29,7 +29,7 @@ stages:
             arguments: '--configuration $(BuildConfiguration)'
 
   - stage: 'Test'
-    displayname: 'Test'
+    displayName: 'Test'
     jobs:
       - job: test
         steps:
@@ -41,7 +41,7 @@ stages:
             arguments: '--configuration $(BuildConfiguration)'
 
   - stage: 'Publish'
-    displayname: 'Publish'
+    displayName: 'Publish'
     jobs:
       - job: publish
         steps:
